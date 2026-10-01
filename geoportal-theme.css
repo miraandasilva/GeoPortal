@@ -1,0 +1,431 @@
+/* ============================================================
+   GeoPortal — Tema moderno (arquivo novo, separado de main.css)
+   Carregar DEPOIS do Bootstrap e do main.css original.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --geo-navy:   #0B2545;
+  --geo-navy-2: #13315C;
+  --geo-teal:   #2EC4B6;
+  --geo-sand:   #E9C46A;
+  --geo-bg:     #F5F7FA;
+  --geo-text:   #1B263B;
+  --geo-line:   #DCE3EA;
+  --geo-radius: 10px;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--geo-text);
+  background: var(--geo-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .navbar-brand{
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+/* remove o <hr> antigo do layout, que não combina com a navbar nova */
+body > hr{
+  display: none;
+}
+
+/* esconde o navbar de texto simples original (div#navbar), a navbar
+   Bootstrap abaixo assume o papel dele sem apagar o markup existente */
+#navbar{
+  display: none;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-geo{
+  background: linear-gradient(180deg, var(--geo-navy) 0%, var(--geo-navy-2) 100%);
+  box-shadow: 0 2px 14px rgba(11, 37, 69, .25);
+  padding-top: .65rem;
+  padding-bottom: .65rem;
+}
+
+.navbar-geo .navbar-brand{
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  letter-spacing: .01em;
+}
+
+.navbar-geo .navbar-brand i{
+  color: var(--geo-teal);
+  font-size: 1.35rem;
+}
+
+.navbar-geo .nav-link{
+  color: rgba(255,255,255,.75);
+  font-weight: 500;
+  padding: .5rem 1rem !important;
+  border-radius: 6px;
+  transition: color .15s ease, background-color .15s ease;
+}
+
+.navbar-geo .nav-link:hover{
+  color: #fff;
+  background: rgba(255,255,255,.08);
+}
+
+.navbar-geo .nav-link.active{
+  color: var(--geo-navy);
+  background: var(--geo-teal);
+}
+
+.navbar-geo .navbar-toggler{
+  border-color: rgba(255,255,255,.3);
+}
+
+.navbar-geo .navbar-toggler-icon{
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* ---------- Hero (faixa curta por página) ---------- */
+.geo-hero{
+  background: var(--geo-navy);
+  color: #fff;
+  padding: 1.75rem 0 1.5rem;
+  border-bottom: 3px solid var(--geo-teal);
+}
+
+.geo-hero h1{
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.geo-hero p{
+  color: rgba(255,255,255,.7);
+  margin: .35rem 0 0;
+  font-size: .95rem;
+}
+
+/* ---------- Área do mapa (index) ---------- */
+.geo-map-wrap{
+  position: relative;
+  flex: 1;
+}
+
+#map{
+  height: 100%;
+  min-height: 480px;
+  width: 100%;
+}
+
+/* painel flutuante de camadas, comum em webgis modernos */
+.geo-layers-panel{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: #fff;
+  border-radius: var(--geo-radius);
+  box-shadow: 0 6px 24px rgba(11,37,69,.18);
+  width: 230px;
+  overflow: hidden;
+}
+
+.geo-layers-panel .geo-layers-header{
+  background: var(--geo-navy);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: .55rem .9rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.geo-layers-panel ul{
+  list-style: none;
+  margin: 0;
+  padding: .5rem .9rem .7rem;
+}
+
+.geo-layers-panel li{
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .85rem;
+  padding: .3rem 0;
+}
+
+.geo-layers-panel .dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.dot-acudes{ background: #3A86FF; }
+.dot-bacias{ background: var(--geo-sand); }
+.dot-drenagem{ background: var(--geo-teal); }
+
+/* ---------- Galeria ---------- */
+.geo-card{
+  border: 1px solid var(--geo-line);
+  border-radius: var(--geo-radius);
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+
+.geo-card:hover{
+  box-shadow: 0 10px 26px rgba(11,37,69,.14);
+  transform: translateY(-2px);
+}
+
+.geo-card .geo-card-thumb{
+  height: 150px;
+  background: linear-gradient(135deg, var(--geo-navy) 0%, var(--geo-teal) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.85);
+  font-size: 2rem;
+}
+
+.geo-card .card-body{
+  padding: .9rem 1rem 1rem;
+}
+
+.geo-card .card-title{
+  font-size: .98rem;
+  font-weight: 600;
+  margin-bottom: .2rem;
+}
+
+.geo-card .card-text{
+  font-size: .83rem;
+  color: #5C6B7A;
+}
+
+/* ---------- Downloads ---------- */
+.geo-download-item{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--geo-line);
+  border-radius: var(--geo-radius);
+  background: #fff;
+}
+
+.geo-download-item + .geo-download-item{
+  margin-top: .6rem;
+}
+
+.geo-download-item .geo-file-icon{
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--geo-bg);
+  color: var(--geo-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.geo-download-item .geo-file-name{
+  font-weight: 600;
+  font-size: .92rem;
+  margin: 0;
+}
+
+.geo-download-item .geo-file-meta{
+  font-size: .78rem;
+  color: #5C6B7A;
+  margin: 0;
+}
+
+.geo-download-item .btn-geo{
+  margin-left: auto;
+}
+
+.btn-geo{
+  background: var(--geo-navy);
+  border-color: var(--geo-navy);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+.btn-geo:hover{
+  background: var(--geo-teal);
+  border-color: var(--geo-teal);
+  color: var(--geo-navy);
+}
+
+/* ---------- Footer ---------- */
+.geo-footer{
+  border-top: 1px solid var(--geo-line);
+  padding: .9rem 0;
+  font-size: .78rem;
+  color: #5C6B7A;
+  text-align: center;
+  background: #fff;
+}
+
+@media (max-width: 991.98px){
+  .geo-layers-panel{
+    width: calc(100% - 2rem);
+  }
+}
+
+/* ---------- Selo técnico / projeção (toque "expert" de geoprocessamento) ---------- */
+.geo-tech-badge{
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  background: rgba(11,37,69,.92);
+  color: rgba(255,255,255,.85);
+  font-size: .72rem;
+  font-family: 'Inter', monospace;
+  padding: .4rem .7rem;
+  border-radius: 6px;
+  display: flex;
+  gap: .9rem;
+  align-items: center;
+  letter-spacing: .01em;
+}
+
+.geo-tech-badge span{
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.geo-tech-badge i{
+  color: var(--geo-teal);
+}
+
+@media (max-width: 575.98px){
+  .geo-tech-badge{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .25rem;
+  }
+}
+
+/* ---------- Galeria (cards com conteúdo real) ---------- */
+.geo-gallery-card{
+  border: 1px solid var(--geo-line);
+  border-radius: var(--geo-radius);
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow .15s ease, transform .15s ease;
+  position: relative;
+}
+
+.geo-gallery-card:hover{
+  box-shadow: 0 10px 26px rgba(11,37,69,.16);
+  transform: translateY(-2px);
+}
+
+.geo-gallery-card .geo-thumb-link{
+  display: block;
+  position: relative;
+}
+
+.geo-gallery-card img{
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--geo-line);
+}
+
+.geo-gallery-card .geo-type-badge{
+  position: absolute;
+  top: .6rem;
+  right: .6rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: .2rem .5rem;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.geo-type-badge.badge-img{ background: var(--geo-teal); color: var(--geo-navy); }
+.geo-type-badge.badge-pdf{ background: #E76F51; }
+
+.geo-gallery-card .card-body{
+  padding: .85rem 1rem .5rem;
+}
+
+.geo-gallery-card .card-title{
+  font-size: .95rem;
+  font-weight: 600;
+  margin-bottom: .25rem;
+  line-height: 1.3;
+}
+
+.geo-gallery-card .fonte{
+  font-size: .76rem;
+  color: #5C6B7A;
+  margin: 0 0 .7rem;
+}
+
+.geo-gallery-card .geo-card-footer{
+  padding: 0 1rem .9rem;
+}
+
+.geo-gallery-card .geo-card-footer a{
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--geo-navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.geo-gallery-card .geo-card-footer a:hover{
+  color: var(--geo-teal);
+}
+
+/* ---------- Estado vazio (downloads) ---------- */
+.geo-empty-state{
+  border: 1px dashed var(--geo-line);
+  border-radius: var(--geo-radius);
+  background: #fff;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #5C6B7A;
+}
+
+.geo-empty-state i{
+  font-size: 2.2rem;
+  color: var(--geo-teal);
+  margin-bottom: .75rem;
+  display: block;
+}
+
+.geo-empty-state h3{
+  font-size: 1.05rem;
+  color: var(--geo-text);
+  margin-bottom: .3rem;
+}
+
+.geo-empty-state p{
+  font-size: .88rem;
+  margin: 0;
+}

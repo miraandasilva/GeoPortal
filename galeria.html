@@ -5,53 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GeoPortal - Galeria</title>
 	<link rel="stylesheet" href="css/main.css">
-	<style>
-		.galeria-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 24px;
-			padding: 20px;
-		}
-		.galeria-item {
-			border: 1px solid #ccc;
-			border-radius: 6px;
-			overflow: hidden;
-			background: #fff;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-			display: flex;
-			flex-direction: column;
-		}
-		.galeria-item a.thumb-link {
-			display: block;
-		}
-		.galeria-item img {
-			width: 100%;
-			height: 200px;
-			object-fit: cover;
-			display: block;
-			border-bottom: 1px solid #ddd;
-		}
-		.galeria-caption {
-			padding: 10px 14px;
-			flex: 1;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-		.galeria-caption h3 {
-			margin: 0 0 6px 0;
-			font-size: 1rem;
-		}
-		.galeria-caption .fonte {
-			font-size: 0.8rem;
-			color: #666;
-			margin: 4px 0 10px 0;
-		}
-		.galeria-caption .links a {
-			font-size: 0.85rem;
-			margin-right: 10px;
-		}
-	</style>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+	<link rel="stylesheet" href="css/geoportal-theme.css">
 </head>
 <body>
 	<div id="navbar">
@@ -60,148 +18,187 @@
 		<a href="downloads.html">Downloads</a>
 	</div>
 
+	<nav class="navbar navbar-expand-lg navbar-geo sticky-top">
+		<div class="container-fluid px-3 px-lg-4">
+			<a class="navbar-brand" href="index.html">
+				<i class="bi bi-geo-alt-fill"></i> GeoPortal
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Alternar navegação">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navMain">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Início</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="galeria.html"><i class="bi bi-images me-1"></i>Galeria</a></li>
+					<li class="nav-item"><a class="nav-link" href="downloads.html"><i class="bi bi-download me-1"></i>Downloads</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
 	<hr>
 
-	<h1>Galeria de Mapas</h1>
+	<header class="geo-hero">
+		<div class="container-fluid px-3 px-lg-4">
+			<h1>Galeria de Mapas</h1>
+			<p>Produtos cartográficos e estudos temáticos sobre recursos hídricos e uso do solo na Paraíba</p>
+		</div>
+	</header>
 
-	<div class="galeria-grid">
+	<div class="container-fluid px-3 px-lg-4 py-4">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="img/acudes_monitorados.png" target="_blank">
-				<img src="img/acudes_monitorados.png" alt="Açudes Monitorados para Qualidade da Água">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Açudes Monitorados para Qualidade da Água</h3>
-					<p class="fonte">Fonte: AESA, 2009</p>
-				</div>
-				<div class="links">
-					<a href="img/acudes_monitorados.png" target="_blank">Ver imagem completa</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="img/acudes_monitorados.png" target="_blank">
+						<span class="geo-type-badge badge-img">IMAGEM</span>
+						<img src="img/acudes_monitorados.png" alt="Açudes Monitorados para Qualidade da Água">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Açudes Monitorados para Qualidade da Água</h3>
+						<p class="fonte">Fonte: AESA, 2009</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="img/acudes_monitorados.png" target="_blank"><i class="bi bi-arrows-fullscreen"></i> Ver imagem completa</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="img/area_adutoras.jpg" target="_blank">
-				<img src="img/area_adutoras.jpg" alt="Infraestrutura Hídrica e Área de Influência das Adutoras">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Infraestrutura Hídrica e Área de Influência das Adutoras</h3>
-					<p class="fonte">Fonte: AESA / SECTMA, 2007</p>
-				</div>
-				<div class="links">
-					<a href="img/area_adutoras.jpg" target="_blank">Ver imagem completa</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="img/area_adutoras.jpg" target="_blank">
+						<span class="geo-type-badge badge-img">IMAGEM</span>
+						<img src="img/area_adutoras.jpg" alt="Infraestrutura Hídrica e Área de Influência das Adutoras">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Infraestrutura Hídrica e Área de Influência das Adutoras</h3>
+						<p class="fonte">Fonte: AESA / SECTMA, 2007</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="img/area_adutoras.jpg" target="_blank"><i class="bi bi-arrows-fullscreen"></i> Ver imagem completa</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="img/areas_atuacao.png" target="_blank">
-				<img src="img/areas_atuacao.png" alt="Áreas de Atuação das Gerências Regionais de Bacias Hidrográficas">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Áreas de Atuação das Gerências Regionais de Bacias Hidrográficas</h3>
-					<p class="fonte">Fonte: AESA, 2009</p>
-				</div>
-				<div class="links">
-					<a href="img/areas_atuacao.png" target="_blank">Ver imagem completa</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="img/areas_atuacao.png" target="_blank">
+						<span class="geo-type-badge badge-img">IMAGEM</span>
+						<img src="img/areas_atuacao.png" alt="Áreas de Atuação das Gerências Regionais de Bacias Hidrográficas">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Áreas de Atuação das Gerências Regionais de Bacias Hidrográficas</h3>
+						<p class="fonte">Fonte: AESA, 2009</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="img/areas_atuacao.png" target="_blank"><i class="bi bi-arrows-fullscreen"></i> Ver imagem completa</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="img/areas_comites.png" target="_blank">
-				<img src="img/areas_comites.png" alt="Áreas de Atuação de Comitês de Bacias Hidrográficas de Rios de Domínio Estadual">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Áreas de Atuação de Comitês de Bacias Hidrográficas</h3>
-					<p class="fonte">Fonte: AESA, 2009</p>
-				</div>
-				<div class="links">
-					<a href="img/areas_comites.png" target="_blank">Ver imagem completa</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="img/areas_comites.png" target="_blank">
+						<span class="geo-type-badge badge-img">IMAGEM</span>
+						<img src="img/areas_comites.png" alt="Áreas de Atuação de Comitês de Bacias Hidrográficas de Rios de Domínio Estadual">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Áreas de Atuação de Comitês de Bacias Hidrográficas</h3>
+						<p class="fonte">Fonte: AESA, 2009</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="img/areas_comites.png" target="_blank"><i class="bi bi-arrows-fullscreen"></i> Ver imagem completa</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="img/bacias_hidrograficas.png" target="_blank">
-				<img src="img/bacias_hidrograficas.png" alt="Bacias Hidrográficas do Estado da Paraíba">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Bacias Hidrográficas</h3>
-					<p class="fonte">Fonte: AESA, 2009</p>
-				</div>
-				<div class="links">
-					<a href="img/bacias_hidrograficas.png" target="_blank">Ver imagem completa</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="img/bacias_hidrograficas.png" target="_blank">
+						<span class="geo-type-badge badge-img">IMAGEM</span>
+						<img src="img/bacias_hidrograficas.png" alt="Bacias Hidrográficas do Estado da Paraíba">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Bacias Hidrográficas</h3>
+						<p class="fonte">Fonte: AESA, 2009</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="img/bacias_hidrograficas.png" target="_blank"><i class="bi bi-arrows-fullscreen"></i> Ver imagem completa</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="pdf/Classe_de_Capacidade_de_Uso_das_Terras.pdf" target="_blank">
-				<img src="img/classe_capacidade_uso_terras.jpg" alt="Classe de Capacidade de Uso das Terras">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Classe de Capacidade de Uso das Terras</h3>
-					<p class="fonte">Fonte: ATECEL, 2002 / AESA</p>
-				</div>
-				<div class="links">
-					<a href="pdf/Classe_de_Capacidade_de_Uso_das_Terras.pdf" target="_blank">Abrir PDF</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="pdf/Classe_de_Capacidade_de_Uso_das_Terras.pdf" target="_blank">
+						<span class="geo-type-badge badge-pdf">PDF</span>
+						<img src="img/classe_capacidade_uso_terras.jpg" alt="Classe de Capacidade de Uso das Terras">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Classe de Capacidade de Uso das Terras</h3>
+						<p class="fonte">Fonte: ATECEL, 2002 / AESA</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="pdf/Classe_de_Capacidade_de_Uso_das_Terras.pdf" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Abrir PDF</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="pdf/Classe_de_Terras_para_Irrigacao.pdf" target="_blank">
-				<img src="img/classe_terras_irrigacao.jpg" alt="Classe de Terras para Irrigação do Estado da Paraíba">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Classe de Terras para Irrigação</h3>
-					<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
-				</div>
-				<div class="links">
-					<a href="pdf/Classe_de_Terras_para_Irrigacao.pdf" target="_blank">Abrir PDF</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="pdf/Classe_de_Terras_para_Irrigacao.pdf" target="_blank">
+						<span class="geo-type-badge badge-pdf">PDF</span>
+						<img src="img/classe_terras_irrigacao.jpg" alt="Classe de Terras para Irrigação do Estado da Paraíba">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Classe de Terras para Irrigação</h3>
+						<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="pdf/Classe_de_Terras_para_Irrigacao.pdf" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Abrir PDF</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="pdf/Geomorfologia_do_Estado_da_Paraiba.pdf" target="_blank">
-				<img src="img/geomorfologia_paraiba.jpg" alt="Geomorfologia do Estado da Paraíba">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Geomorfologia do Estado da Paraíba</h3>
-					<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
-				</div>
-				<div class="links">
-					<a href="pdf/Geomorfologia_do_Estado_da_Paraiba.pdf" target="_blank">Abrir PDF</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="pdf/Geomorfologia_do_Estado_da_Paraiba.pdf" target="_blank">
+						<span class="geo-type-badge badge-pdf">PDF</span>
+						<img src="img/geomorfologia_paraiba.jpg" alt="Geomorfologia do Estado da Paraíba">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Geomorfologia do Estado da Paraíba</h3>
+						<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="pdf/Geomorfologia_do_Estado_da_Paraiba.pdf" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Abrir PDF</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="galeria-item">
-			<a class="thumb-link" href="pdf/Geologia_do_Estado_da_Paraiba.pdf" target="_blank">
-				<img src="img/geologia_paraiba.jpg" alt="Geologia do Estado da Paraíba">
-			</a>
-			<div class="galeria-caption">
-				<div>
-					<h3>Geologia do Estado da Paraíba</h3>
-					<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
-				</div>
-				<div class="links">
-					<a href="pdf/Geologia_do_Estado_da_Paraiba.pdf" target="_blank">Abrir PDF</a>
+			<div class="col">
+				<div class="geo-gallery-card h-100">
+					<a class="geo-thumb-link" href="pdf/Geologia_do_Estado_da_Paraiba.pdf" target="_blank">
+						<span class="geo-type-badge badge-pdf">PDF</span>
+						<img src="img/geologia_paraiba.jpg" alt="Geologia do Estado da Paraíba">
+					</a>
+					<div class="card-body">
+						<h3 class="card-title">Geologia do Estado da Paraíba</h3>
+						<p class="fonte">Fonte: Atlas do Plano Estadual de Recursos Hídricos da Paraíba</p>
+					</div>
+					<div class="geo-card-footer">
+						<a href="pdf/Geologia_do_Estado_da_Paraiba.pdf" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Abrir PDF</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
 	</div>
 
+	<footer class="geo-footer">
+		GeoPortal &mdash; dados geoespaciais para consulta e download
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>
