@@ -7,7 +7,7 @@
   <title></title>
   <abstract></abstract>
   <links>
-    <link name="" format="" mimeType="" type="Local Area Network" url="file://" size="" description=""/>
+    <link url="file://" mimeType="" name="" description="" format="" size="" type="Local Area Network"/>
   </links>
   <dates/>
   <fees></fees>
