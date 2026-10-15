@@ -1,46 +1,354 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GeoPortal - Início</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GeoPortal — visualizador WebGIS de açudes, bacias hidrográficas e drenagem principal da Paraíba, com opção de adicionar camadas GeoJSON.">
+  <meta name="author" content="GeoPortal">
+  <title>GeoPortal - Início</title>
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
 
-	<link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet"href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/> 
+
+  <link rel="stylesheet"
+  href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Estilos do painel de camadas GeoJSON (autocontido) -->
+  <style>
+    .drop-zone{border:2px dashed #8aa0a6;border-radius:8px;padding:22px 12px;text-align:center;cursor:pointer;margin-bottom:14px}
+    .drop-zone:hover,.drop-zone:focus-visible,.drop-zone.over{border-color:#0b6fa4;background:rgba(11,111,164,.08)}
+    .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;border:1px solid rgba(0,0,0,.3)}
+    #painelCamadas{width:min(400px,100vw)}
+    .popup-attr{font-size:.85rem;border-collapse:collapse}
+    .popup-attr th{padding:2px 8px 2px 0;text-align:left;vertical-align:top;color:#52666b}
+    .popup-attr td{padding:2px 0;overflow-wrap:anywhere}
+  </style>
 
 </head>
 <body>
 
-	<div id="navbar">
-		<a href="index.html">Início</a> ||
-		<a href="galeria.html">Galeria</a> ||
-		<a href="downloads.html">Downloads</a>
-	</div>
+  <a class="visually-hidden-focusable" href="#conteudo">Pular para o conteúdo principal</a>
 
-	<hr>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-geo sticky-top" aria-label="Navegação principal">
+      <div class="container-fluid px-3 px-lg-4">
+        <a class="navbar-brand" href="index.html">
+          <i class="bi bi-geo-alt-fill"></i> GeoPortal
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html"><i class="bi bi-house-door me-1"></i>Início</a></li>
+            <li class="nav-item"><button class="nav-link btn btn-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#painelCamadas" aria-controls="painelCamadas"><i class="bi bi-layers me-1"></i>Camadas GeoJSON</button></li>
+            <li class="nav-item"><a class="nav-link" href="galeria.html"><i class="bi bi-images me-1"></i>Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="downloads.html"><i class="bi bi-download me-1"></i>Downloads</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-	<h1>GeoPortal</h1>
+  <main id="conteudo" aria-label="Mapa interativo do GeoPortal">
 
-	<div id="map"></div>
+    <div class="geo-hero">
+      <div class="container-fluid px-3 px-lg-4">
+        <h1>GeoPortal</h1>
+        <p>Sistema de informação geográfica para monitoramento de açudes, bacias hidrográficas e drenagem principal</p>
+      </div>
+    </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <section class="geo-map-wrap" aria-label="Mapa">
+      <div id="map"></div>
 
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+      <aside class="geo-layers-panel" aria-label="Legenda das camadas">
+        <h2 class="geo-layers-header">
+          <i class="bi bi-layers" aria-hidden="true"></i> Camadas ativas
+        </h2>
+        <ul>
+          <li><span class="dot dot-acudes" aria-hidden="true"></span> Açudes</li>
+          <li><span class="dot dot-bacias" aria-hidden="true"></span> Bacias hidrográficas</li>
+          <li><span class="dot dot-drenagem" aria-hidden="true"></span> Drenagem principal</li>
+          <li><span class="dot" style="background:#c2185b" aria-hidden="true"></span> Poços <span id="totalPocos" class="text-muted"></span></li>
+        </ul>
+        <button class="btn btn-sm btn-light w-100 mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#painelCamadas" aria-controls="painelCamadas">
+          <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Adicionar camada GeoJSON
+        </button>
+      </aside>
 
-    <script src="dados/acudes.js"></script>
-    <script src="dados/bacias_hidro.js"></script>
-    <script src="dados/drenagem_principal.js"></script>
-  
-    <script src="js/main.js"></script>
+      <p class="geo-tech-badge">
+        <span><i class="bi bi-globe-americas" aria-hidden="true"></i> SIRGAS 2000 (EPSG:4674)</span>
+        <span><i class="bi bi-geo" aria-hidden="true"></i> Paraíba, Brasil</span>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ===== Painel lateral com abas: camadas no mapa / adicionar GeoJSON ===== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="painelCamadas" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="painelCamadasTitulo">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="painelCamadasTitulo"><i class="bi bi-layers me-1" aria-hidden="true"></i>Camadas</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar painel"></button>
+    </div>
+    <div class="offcanvas-body pt-0">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link active" id="tab-lista" data-bs-toggle="tab" data-bs-target="#pane-lista" type="button" role="tab" aria-controls="pane-lista" aria-selected="true">No mapa</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" id="tab-add" data-bs-toggle="tab" data-bs-target="#pane-add" type="button" role="tab" aria-controls="pane-add" aria-selected="false">Adicionar GeoJSON</button></li>
+      </ul>
+
+      <div class="tab-content pt-3">
+        <div class="tab-pane fade show active" id="pane-lista" role="tabpanel" aria-labelledby="tab-lista" tabindex="0">
+          <ul id="listaCamadas" class="list-unstyled mb-0"></ul>
+          <p id="listaVazia" class="text-muted small d-none">Nenhuma camada no mapa.</p>
+        </div>
+
+        <div class="tab-pane fade" id="pane-add" role="tabpanel" aria-labelledby="tab-add" tabindex="0">
+          <div id="drop" class="drop-zone" role="button" tabindex="0" aria-label="Escolher arquivos GeoJSON ou arrastá-los para cá">
+            <i class="bi bi-cloud-arrow-up fs-3" aria-hidden="true"></i>
+            <div><strong>Arraste arquivos</strong> .geojson ou .json aqui<br><span class="small text-muted">ou clique para escolher (vários de uma vez)</span></div>
+          </div>
+          <input type="file" id="arquivo" accept=".geojson,.json,.js,.txt,application/geo+json,application/json,text/plain" multiple hidden>
+
+          <div class="mb-3">
+            <label for="txtGeo" class="form-label">Ou cole o conteúdo GeoJSON</label>
+            <textarea id="txtGeo" class="form-control font-monospace small" rows="4" placeholder='{"type":"FeatureCollection","features":[...]}'></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="urlGeo" class="form-label">Ou informe o endereço (URL)</label>
+            <input type="url" id="urlGeo" class="form-control" placeholder="https://exemplo.gov.br/camada.geojson">
+            <div class="form-text">O servidor precisa permitir acesso de outros sites (CORS).</div>
+          </div>
+          <div class="row g-2 mb-3 align-items-end">
+            <div class="col">
+              <label for="nomeGeo" class="form-label">Nome da camada</label>
+              <input type="text" id="nomeGeo" class="form-control" maxlength="60" placeholder="Opcional">
+            </div>
+            <div class="col-auto">
+              <label for="corGeo" class="form-label">Cor</label>
+              <input type="color" id="corGeo" class="form-control form-control-color" value="#0b6fa4">
+            </div>
+          </div>
+
+          <button id="btnAdd" type="button" class="btn btn-primary w-100"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Adicionar ao mapa</button>
+          <p id="msgGeo" class="small mt-3 mb-0" role="status" aria-live="polite"></p>
+          <p class="small text-muted mt-3 mb-0">Use coordenadas geográficas em graus (EPSG:4326 ou SIRGAS 2000 geográfico). Se o arquivo estiver em UTM, reprojete antes no QGIS (Exportar → Salvar feições como… → CRS EPSG:4326).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="geo-footer">
+    <p><small>GeoPortal &mdash; dados geoespaciais para consulta e download</small></p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  <!-- Captura o mapa e as camadas criadas pelo js/main.js (precisa vir ANTES dele) -->
+  <script>
+    window.__geo = { map: null, projeto: [], criandoPropria: false };
+    L.Map.addInitHook(function () { if (!window.__geo.map) window.__geo.map = this; });
+    L.GeoJSON.addInitHook(function () { if (!window.__geo.criandoPropria) window.__geo.projeto.push(this); });
+    if (L.MarkerClusterGroup) L.MarkerClusterGroup.addInitHook(function () { if (!window.__geo.criandoPropria) window.__geo.projeto.push(this); });
+  </script>
+
+  <script src="data/acudes.js?v=6"></script>
+  <script src="data/bacias_hidro.js?v=6"></script>
+  <script src="data/drenagem_principal.js?v=6"></script>
+  <script src="data/pocos_pb.js?v=6"></script>
+
+  <script src="js/main.js?v=6"></script>
+
+  <!-- Gerenciador de camadas GeoJSON (roda após o carregamento completo da página) -->
+  <script>
+  window.addEventListener('load', function () {
+    var G = window.__geo, map = G.map, $ = function (s) { return document.querySelector(s); };
+    var msgEl = $('#msgGeo');
+    function msg(t, erro) { msgEl.textContent = t; msgEl.className = 'small mt-3 mb-0 ' + (erro ? 'text-danger' : 'text-success'); }
+    if (!map) { msg('Não foi possível localizar o mapa. Verifique se o js/main.js cria o mapa com L.map(...).', true); return; }
+
+    var PAL = ['#0b6fa4', '#c2185b', '#2e7d32', '#ef6c00', '#6a1b9a', '#00838f'], iCor = 0, seq = 0, camadas = [];
+    var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+
+    function tipoDe(layer) {
+      var t = ''; layer.eachLayer(function (l) { if (!t && l.feature && l.feature.geometry) t = l.feature.geometry.type; });
+      return /Point/.test(t) ? 'pontos' : /Line/.test(t) ? 'linhas' : /Polygon/.test(t) ? 'polígonos' : 'feições';
+    }
+
+    /* Camadas já existentes no projeto (criadas pelo main.js), identificadas pelos atributos */
+    function rotuloProjeto(layer, tp) {
+      if (layer._geoRotulo) return layer._geoRotulo;
+      var p = null; layer.eachLayer(function (l) { if (!p && l.feature && l.feature.properties) p = l.feature.properties; });
+      p = p || {};
+      if ('Capacidade' in p || 'capacidade_hm3' in p || 'Finalidade' in p) return 'Açudes';
+      if ('Comite' in p || 'Area_Km2' in p) return 'Bacias hidrográficas';
+      if ('Ordem' in p || 'CodigoOtto' in p) return 'Drenagem principal';
+      if ('q_m3h' in p || 'profundidade' in p) return 'Poços';
+      return ({ pontos: 'Pontos', linhas: 'Linhas', 'polígonos': 'Polígonos' })[tp] || 'Camada do projeto';
+    }
+    var usados = {};
+    G.projeto.forEach(function (layer) {
+      if (!map.hasLayer(layer)) return;
+      var tp = tipoDe(layer), base = rotuloProjeto(layer, tp);
+      usados[base] = (usados[base] || 0) + 1;
+      camadas.push({ id: ++seq, nome: base + (usados[base] > 1 ? ' ' + usados[base] : ''), layer: layer, propria: false, tipo: tp });
+    });
+
+    /* Aceita GeoJSON puro ou arquivo JS no formato "var nome = {...};" */
+    function analisar(t) {
+      t = String(t).replace(/^\uFEFF/, '').trim();
+      var m = t.match(/^(?:var|let|const)\s+[\w$]+\s*=\s*/);
+      if (m) t = t.slice(m[0].length);
+      return JSON.parse(t.replace(/;\s*$/, ''));
+    }
+    var canvas = L.canvas({ padding: 0.5 });
+
+    function validar(g) {
+      if (!g || typeof g !== 'object') throw new Error('o conteúdo não é um objeto JSON.');
+      var tipos = ['FeatureCollection', 'Feature', 'Point', 'MultiPoint', 'LineString', 'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'];
+      if (tipos.indexOf(g.type) < 0) throw new Error('isto não parece um GeoJSON (campo "type" ausente ou inválido).');
+      var crs = g.crs && g.crs.properties && g.crs.properties.name;
+      if (crs && !/4326|CRS84|4674|4619/.test(crs)) throw new Error('o arquivo declara outro sistema de coordenadas (' + crs + '). Reprojete para EPSG:4326.');
+      var c = primeira(g);
+      if (!c) throw new Error('nenhuma geometria encontrada.');
+      if (Math.abs(c[0]) > 180 || Math.abs(c[1]) > 90) throw new Error('as coordenadas não estão em graus (parecem projetadas, como UTM). Reprojete para EPSG:4326.');
+    }
+    function primeira(o) {
+      if (!o) return null;
+      if (o.type === 'FeatureCollection') { for (var i = 0; i < o.features.length; i++) { var r = primeira(o.features[i]); if (r) return r; } return null; }
+      if (o.type === 'Feature') return primeira(o.geometry);
+      if (o.type === 'GeometryCollection') return o.geometries.length ? primeira(o.geometries[0]) : null;
+      var c = o.coordinates; while (Array.isArray(c) && Array.isArray(c[0])) c = c[0];
+      return Array.isArray(c) && c.length >= 2 ? c : null;
+    }
+    function popupAttr(p) {
+      var linhas = Object.keys(p).map(function (k) {
+        var v = p[k] !== null && typeof p[k] === 'object' ? JSON.stringify(p[k]) : p[k];
+        return '<tr><th scope="row">' + esc(k) + '</th><td>' + esc(v === null ? '' : v) + '</td></tr>';
+      }).join('');
+      return '<table class="popup-attr">' + linhas + '</table>';
+    }
+
+    function adicionar(g, nome, cor, semZoom) {
+      validar(g);
+      G.criandoPropria = true;
+      var layer;
+      try {
+        layer = L.geoJSON(g, {
+          renderer: canvas,
+          style: function () { return { color: cor, weight: 2.5, opacity: 1, fillColor: cor, fillOpacity: 0.35 }; },
+          pointToLayer: function (f, ll) { return L.circleMarker(ll, { radius: 6, color: '#fff', weight: 1.5, fillColor: cor, fillOpacity: 0.9 }); },
+          onEachFeature: function (f, l) { if (f.properties && Object.keys(f.properties).length) l.bindPopup(popupAttr(f.properties), { maxHeight: 260 }); }
+        });
+      } finally { G.criandoPropria = false; }
+      var n = layer.getLayers().length;
+      if (!n) throw new Error('nenhuma feição encontrada.');
+      layer.addTo(map);
+      if (!semZoom && layer.getBounds().isValid()) map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: 14 });
+      camadas.push({ id: ++seq, nome: nome, layer: layer, propria: true, cor: cor, tipo: tipoDe(layer) });
+      desenhar();
+      return n;
+    }
+
+    function desenhar() {
+      var ul = $('#listaCamadas'); ul.innerHTML = '';
+      $('#listaVazia').classList.toggle('d-none', camadas.length > 0);
+      camadas.forEach(function (c) {
+        var n = c.layer.getLayers().length, vis = map.hasLayer(c.layer), li = document.createElement('li');
+        li.className = 'border rounded p-2 mb-2'; li.dataset.id = c.id;
+        li.innerHTML =
+          '<div class="d-flex align-items-center gap-1">' +
+          '<div class="form-check mb-0 flex-grow-1"><input class="form-check-input" type="checkbox" data-act="vis" id="vis-' + c.id + '"' + (vis ? ' checked' : '') + '>' +
+          '<label class="form-check-label" for="vis-' + c.id + '">' + (c.propria ? '<span class="swatch" style="background:' + esc(c.cor) + '"></span>' : '') + esc(c.nome) +
+          ' <small class="text-muted">(' + n + ' ' + c.tipo + ')</small></label></div>' +
+          '<button type="button" class="btn btn-sm btn-outline-secondary" data-act="zoom" title="Ampliar até a camada" aria-label="Ampliar até a camada ' + esc(c.nome) + '"><i class="bi bi-zoom-in" aria-hidden="true"></i></button>' +
+          (c.propria ? '<button type="button" class="btn btn-sm btn-outline-secondary" data-act="baixar" title="Baixar GeoJSON" aria-label="Baixar GeoJSON de ' + esc(c.nome) + '"><i class="bi bi-download" aria-hidden="true"></i></button>' +
+          '<button type="button" class="btn btn-sm btn-outline-danger" data-act="remover" title="Remover do mapa" aria-label="Remover ' + esc(c.nome) + ' do mapa"><i class="bi bi-trash" aria-hidden="true"></i></button>' : '') +
+          '</div>' +
+          (c.propria ? '<label class="small text-muted mt-1" for="op-' + c.id + '">Opacidade</label><input type="range" class="form-range" id="op-' + c.id + '" data-act="op" min="0" max="1" step="0.05" value="' + (c._op == null ? 1 : c._op) + '">' : '');
+        ul.append(li);
+      });
+    }
+
+    $('#listaCamadas').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-act]'); if (!b || b.type === 'checkbox' || b.type === 'range') return;
+      var c = camadas.find(function (x) { return x.id == b.closest('li').dataset.id; }); if (!c) return;
+      if (b.dataset.act === 'zoom') { if (!map.hasLayer(c.layer)) map.addLayer(c.layer); if (c.layer.getBounds().isValid()) map.fitBounds(c.layer.getBounds(), { padding: [30, 30], maxZoom: 14 }); desenhar(); }
+      if (b.dataset.act === 'remover') { map.removeLayer(c.layer); camadas = camadas.filter(function (x) { return x !== c; }); desenhar(); }
+      if (b.dataset.act === 'baixar') {
+        var url = URL.createObjectURL(new Blob([JSON.stringify(c.layer.toGeoJSON())], { type: 'application/geo+json' })), a = document.createElement('a');
+        a.href = url; a.download = c.nome.replace(/[^\w\-]+/g, '_') + '.geojson'; document.body.append(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      }
+    });
+    $('#listaCamadas').addEventListener('change', function (e) {
+      var t = e.target, c = camadas.find(function (x) { return x.id == t.closest('li').dataset.id; }); if (!c) return;
+      if (t.dataset.act === 'vis') { t.checked ? map.addLayer(c.layer) : map.removeLayer(c.layer); }
+    });
+    $('#listaCamadas').addEventListener('input', function (e) {
+      var t = e.target; if (t.dataset.act !== 'op') return;
+      var c = camadas.find(function (x) { return x.id == t.closest('li').dataset.id; }); if (!c) return;
+      var v = +t.value; c._op = v;
+      c.layer.eachLayer(function (l) { if (l.setStyle) l.setStyle({ opacity: v, fillOpacity: v * (l instanceof L.CircleMarker ? 0.9 : 0.35) }); });
+    });
+
+    function irParaLista() { bootstrap.Tab.getOrCreateInstance($('#tab-lista')).show(); }
+    function proximaCor() { iCor++; $('#corGeo').value = PAL[iCor % PAL.length]; }
+    function nomeUnico(n) { return n || 'Camada ' + (seq + 1); }
+    function erroTxt(e) { return e instanceof SyntaxError ? 'JSON inválido (verifique vírgulas, chaves e aspas).' : e.message; }
+
+    function lerArquivos(files) {
+      files = Array.prototype.slice.call(files); if (!files.length) return;
+      var ok = 0, erros = [], nomeManual = files.length === 1 ? $('#nomeGeo').value.trim() : '';
+      Promise.all(files.map(function (f) {
+        return f.text().then(function (t) {
+          adicionar(analisar(t), nomeManual || f.name.replace(/\.(geo)?json$|\.js$|\.txt$/i, ''), $('#corGeo').value); ok++; proximaCor();
+        }).catch(function (e) { erros.push(f.name + ': ' + erroTxt(e)); });
+      })).then(function () {
+        if (erros.length) msg((ok ? ok + ' camada(s) adicionada(s). ' : '') + 'Não foi possível ler — ' + erros.join(' | '), true);
+        else { msg(ok + ' camada(s) adicionada(s).'); $('#nomeGeo').value = ''; irParaLista(); }
+      });
+    }
+
+    var drop = $('#drop'), inp = $('#arquivo');
+    drop.addEventListener('click', function () { inp.click(); });
+    drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inp.click(); } });
+    inp.addEventListener('change', function () { lerArquivos(inp.files); inp.value = ''; });
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function (e) { lerArquivos(e.dataTransfer.files); });
+
+    $('#btnAdd').addEventListener('click', function () {
+      var t = $('#txtGeo').value.trim(), u = $('#urlGeo').value.trim(), nome = $('#nomeGeo').value.trim(), cor = $('#corGeo').value;
+      if (t) {
+        try { var n = adicionar(analisar(t), nomeUnico(nome), cor); msg(n + ' feição(ões) adicionada(s).'); $('#txtGeo').value = ''; $('#nomeGeo').value = ''; proximaCor(); irParaLista(); }
+        catch (e) { msg('Não foi possível adicionar: ' + erroTxt(e), true); }
+      } else if (u) {
+        msg('Baixando…');
+        fetch(u).then(function (r) { if (!r.ok) throw new Error('o servidor respondeu ' + r.status + '.'); return r.json(); })
+          .then(function (g) {
+            var n = adicionar(g, nomeUnico(nome || u.split('/').pop().replace(/\.(geo)?json.*$/i, '')), cor);
+            msg(n + ' feição(ões) adicionada(s).'); $('#urlGeo').value = ''; $('#nomeGeo').value = ''; proximaCor(); irParaLista();
+          }).catch(function (e) { msg('Não foi possível carregar a URL: ' + (e instanceof TypeError ? 'verifique o endereço e se o servidor permite CORS.' : erroTxt(e)), true); });
+      } else msg('Escolha um arquivo, cole um GeoJSON ou informe uma URL.', true);
+    });
+
+    desenhar();
+    if (location.hash === '#camadas') bootstrap.Offcanvas.getOrCreateInstance($('#painelCamadas')).show();
+  });
+  </script>
 
 </body>
 </html>

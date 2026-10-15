@@ -1,21 +1,39 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GeoPortal - Downloads</title>
-	<link rel="stylesheet" href="css/main.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Baixe dados geográficos e mapas temáticos do GeoPortal da Paraíba.">
+  <title>Dados e downloads | GeoPortal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-	<div id="navbar">
-		<a href="index.html">Início</a> ||
-		<a href="galeria.html">Galeria</a> ||
-		<a href="downloads.html">Downloads</a>
-	</div>
-
-	<hr>
-	
-	<h1>Área de Downloads</h1>
-
-</body>
-</html>
+<nav class="navbar navbar-expand-lg navbar-dark gp-navbar sticky-top"><div class="container-fluid px-lg-4">
+  <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="brand-mark"><i class="bi bi-droplet-half"></i></span><span>Geo<span class="brand-light">Portal</span><small class="brand-sub d-block">AESA · PARAÍBA</small></span></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegação"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="mainNav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+    <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-map me-1"></i>Mapa interativo</a></li><li class="nav-item"><a class="nav-link" href="galeria.html"><i class="bi bi-images me-1"></i>Galeria cartográfica</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="downloads.html"><i class="bi bi-download me-1"></i>Dados e downloads</a></li><li class="nav-item"><a class="nav-link" href="index.html#camadas"><i class="bi bi-layers me-1"></i>Camadas GeoJSON</a></li>
+  </ul></div>
+</div></nav>
+<header class="page-hero page-hero-download"><div class="container-fluid px-lg-5"><div class="section-kicker">CENTRAL DE ARQUIVOS</div><h1>Dados prontos para<br><span>sua próxima análise.</span></h1><p>Consulte os recursos disponíveis e utilize os arquivos em softwares de geoprocessamento e visualização cartográfica.</p><div class="page-hero-meta"><span><i class="bi bi-file-earmark-zip me-2"></i>Dados vetoriais</span><span><i class="bi bi-file-earmark-pdf me-2"></i>Mapas em PDF</span></div></div></header>
+<main class="container-fluid px-lg-5 py-5">
+  <section class="mb-5"><div class="section-heading mb-4"><div class="section-kicker">CAMADAS GEOGRÁFICAS</div><h2>Dados para SIG</h2><p>Arquivos vetoriais que podem ser utilizados em softwares compatíveis com dados geográficos.</p></div>
+    <div class="resource-row"><div class="resource-icon geojson"><i class="bi bi-droplet"></i></div><div class="resource-info"><div class="d-flex flex-wrap align-items-center gap-2"><h3>Açudes da Paraíba</h3><span class="file-badge">GEOJSON</span></div><p>71 reservatórios (polígonos) com capacidade, finalidade, município e dados do barramento. Compatível com QGIS, ArcGIS e outras ferramentas SIG.</p><div class="resource-tags"><span><i class="bi bi-diagram-3 me-1"></i>Polígonos</span><span><i class="bi bi-globe2 me-1"></i>SIRGAS 2000 / WGS 84 (graus)</span><span><i class="bi bi-hdd me-1"></i>1,2 MB</span></div></div><a class="btn btn-accent resource-download" href="dados/acudes.geojson" download><i class="bi bi-download me-2"></i>Baixar arquivo</a></div>
+    <div class="resource-row"><div class="resource-icon geojson"><i class="bi bi-bounding-box"></i></div><div class="resource-info"><div class="d-flex flex-wrap align-items-center gap-2"><h3>Bacias hidrográficas</h3><span class="file-badge">GEOJSON</span></div><p>12 bacias com nome, comitê, perímetro e área em km².</p><div class="resource-tags"><span><i class="bi bi-diagram-3 me-1"></i>Polígonos</span><span><i class="bi bi-globe2 me-1"></i>SIRGAS 2000 / WGS 84 (graus)</span><span><i class="bi bi-hdd me-1"></i>0,4 MB</span></div></div><a class="btn btn-accent resource-download" href="dados/bacias_hidro.geojson" download><i class="bi bi-download me-2"></i>Baixar arquivo</a></div>
+    <div class="resource-row"><div class="resource-icon geojson"><i class="bi bi-bezier2"></i></div><div class="resource-info"><div class="d-flex flex-wrap align-items-center gap-2"><h3>Drenagem principal</h3><span class="file-badge">GEOJSON</span></div><p>2.265 trechos com ordem do curso d'água, domínio e código Otto.</p><div class="resource-tags"><span><i class="bi bi-diagram-3 me-1"></i>Linhas</span><span><i class="bi bi-globe2 me-1"></i>SIRGAS 2000 / WGS 84 (graus)</span><span><i class="bi bi-hdd me-1"></i>8,5 MB</span></div></div><a class="btn btn-accent resource-download" href="dados/drenagem_principal.geojson" download><i class="bi bi-download me-2"></i>Baixar arquivo</a></div>
+    <div class="resource-row"><div class="resource-icon geojson"><i class="bi bi-geo-alt"></i></div><div class="resource-info"><div class="d-flex flex-wrap align-items-center gap-2"><h3>Poços da Paraíba</h3><span class="file-badge">GEOJSON</span></div><p>1.816 poços com órgão, profundidade, vazão (m³/h), equipamento e localização.</p><div class="resource-tags"><span><i class="bi bi-diagram-3 me-1"></i>Pontos</span><span><i class="bi bi-globe2 me-1"></i>SIRGAS 2000 / WGS 84 (graus)</span><span><i class="bi bi-hdd me-1"></i>0,6 MB</span></div></div><a class="btn btn-accent resource-download" href="dados/pocos_pb.geojson" download><i class="bi bi-download me-2"></i>Baixar arquivo</a></div>
+  </section>
+  <section><div class="section-heading mb-4"><div class="section-kicker">PUBLICAÇÕES CARTOGRÁFICAS</div><h2>Mapas em PDF</h2><p>Abra o documento no navegador ou salve-o para consulta posterior.</p></div>
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-3"><article class="pdf-card"><div class="pdf-icon"><i class="bi bi-file-earmark-pdf"></i></div><span class="file-badge">PDF</span><h3>Classe de capacidade de uso das terras</h3><p>Mapa temático sobre a capacidade de uso das terras.</p><a href="pdf/Classe_de_Capacidade_de_Uso_das_Terras.pdf" target="_blank" rel="noopener" class="pdf-link">Abrir documento <i class="bi bi-arrow-up-right"></i></a></article></div>
+      <div class="col-md-6 col-xl-3"><article class="pdf-card"><div class="pdf-icon"><i class="bi bi-file-earmark-pdf"></i></div><span class="file-badge">PDF</span><h3>Classe de terras para irrigação</h3><p>Mapa temático de classes de terras para irrigação.</p><a href="pdf/Classe_de_Terras_para_Irrigacao.pdf" target="_blank" rel="noopener" class="pdf-link">Abrir documento <i class="bi bi-arrow-up-right"></i></a></article></div>
+      <div class="col-md-6 col-xl-3"><article class="pdf-card"><div class="pdf-icon"><i class="bi bi-file-earmark-pdf"></i></div><span class="file-badge">PDF</span><h3>Geomorfologia do Estado da Paraíba</h3><p>Informações cartográficas sobre as formas de relevo.</p><a href="pdf/Geomorfologia_do_Estado_da_Paraiba.pdf" target="_blank" rel="noopener" class="pdf-link">Abrir documento <i class="bi bi-arrow-up-right"></i></a></article></div>
+      <div class="col-md-6 col-xl-3"><article class="pdf-card"><div class="pdf-icon"><i class="bi bi-file-earmark-pdf"></i></div><span class="file-badge">PDF</span><h3>Geologia do Estado da Paraíba</h3><p>Mapa temático sobre a geologia do estado.</p><a href="pdf/Geologia_do_Estado_da_Paraiba.pdf" target="_blank" rel="noopener" class="pdf-link">Abrir documento <i class="bi bi-arrow-up-right"></i></a></article></div>
+    </div>
+  </section>
+</main>
+<footer class="gp-footer"><div class="container-fluid px-lg-5 d-flex flex-wrap justify-content-between gap-2"><span><strong>GeoPortal</strong> · Recursos territoriais da Paraíba</span><a href="index.html">Voltar ao mapa <i class="bi bi-arrow-up-right"></i></a></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="js/main.js"></script>
+</body></html>

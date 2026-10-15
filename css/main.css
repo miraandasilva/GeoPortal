@@ -1,4 +1,126 @@
-#map {
-	height: 500px;
-	border: 1px solid #000000;
+/* GeoPortal — main.css (index, galeria e downloads) */
+:root{
+  --gp-pri:#0f3d4a; --gp-pri-2:#14566a; --gp-acc:#0b8fb0; --gp-acc-dark:#0a6f8a; --gp-ink:#15262b; --gp-mut:#52666b;
+  --gp-bg:#f1f5f4; --gp-surf:#fff; --gp-line:#d3dcda; --gp-chip:#e3eef0; --gp-light:#bfe6ff;
+  --gp-font:'DM Sans','Segoe UI',system-ui,sans-serif; --gp-head:'Manrope','DM Sans','Segoe UI',system-ui,sans-serif;
 }
+body{font-family:var(--gp-font);color:var(--gp-ink);background:var(--gp-bg);line-height:1.55}
+h1,h2,h3,h4{font-family:var(--gp-head);letter-spacing:-.01em}
+a{color:var(--gp-acc-dark)}
+:focus-visible{outline:3px solid var(--gp-acc);outline-offset:2px}
+.visually-hidden-focusable:focus{position:fixed;top:8px;left:8px;z-index:3000;background:#fff;padding:8px 12px;border-radius:6px}
+
+/* ---------- Barras de navegação ---------- */
+.gp-navbar,.navbar-geo{background:var(--gp-pri);padding:.5rem 0}
+.gp-navbar .nav-link,.navbar-geo .nav-link{color:rgba(255,255,255,.85);border-radius:6px;padding:.5rem .8rem}
+.gp-navbar .nav-link:hover,.navbar-geo .nav-link:hover{color:#fff;background:rgba(255,255,255,.1)}
+.gp-navbar .nav-link.active,.navbar-geo .nav-link.active{color:#fff;background:rgba(255,255,255,.16)}
+.navbar-geo button.nav-link{background:none;border:0;text-decoration:none}
+.navbar-geo .navbar-brand{color:#fff;font:700 1.25rem var(--gp-head)}
+.navbar-geo .navbar-toggler,.gp-navbar .navbar-toggler{border-color:rgba(255,255,255,.4)}
+.navbar-geo .navbar-toggler-icon{filter:invert(1)}
+.brand-mark{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--gp-acc);color:#fff;font-size:1.2rem}
+.gp-navbar .navbar-brand{color:#fff;font:700 1.2rem/1.1 var(--gp-head)}
+.brand-light{font-weight:500;opacity:.85}
+.brand-sub{font:600 .62rem var(--gp-font);letter-spacing:.12em;opacity:.7}
+.btn-accent{background:var(--gp-acc);border-color:var(--gp-acc);color:#fff;font-weight:600}
+.btn-accent:hover,.btn-accent:focus{background:var(--gp-acc-dark);border-color:var(--gp-acc-dark);color:#fff}
+
+/* ---------- Cabeçalhos de página (galeria / downloads) ---------- */
+.page-hero{background:linear-gradient(135deg,var(--gp-pri) 0%,var(--gp-pri-2) 100%);color:#fff;padding:3rem 0 2.5rem}
+.page-hero-download{background:linear-gradient(135deg,#0a2f3a 0%,#0f5a6e 100%)}
+.page-hero h1{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;line-height:1.1;margin:.4rem 0 .8rem}
+.page-hero h1 span{color:var(--gp-light)}
+.page-hero p{max-width:60ch;opacity:.9;margin:0 0 1rem}
+.page-hero-meta{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.9rem;opacity:.9}
+.section-kicker{font:700 .75rem var(--gp-font);letter-spacing:.14em;color:var(--gp-acc-dark)}
+.page-hero .section-kicker{color:var(--gp-light)}
+.section-heading h2{font-size:1.6rem;font-weight:800;margin:.2rem 0}
+.section-heading p{color:var(--gp-mut);margin:0;max-width:62ch}
+
+/* ---------- Downloads ---------- */
+.resource-row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;background:var(--gp-surf);border:1px solid var(--gp-line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem}
+.resource-icon{flex:none;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;background:var(--gp-chip);color:var(--gp-acc-dark)}
+.resource-info{flex:1 1 320px;min-width:0}
+.resource-info h3{font-size:1.1rem;font-weight:700;margin:0}
+.resource-info p{margin:.2rem 0 .5rem;color:var(--gp-mut);font-size:.95rem}
+.resource-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.resource-tags span{background:var(--gp-chip);border-radius:999px;padding:.1rem .7rem;font-size:.8rem}
+.file-badge{background:var(--gp-pri);color:#fff;border-radius:6px;padding:.05rem .5rem;font:700 .7rem var(--gp-font);letter-spacing:.06em}
+.resource-download{white-space:nowrap}
+.pdf-card{height:100%;display:flex;flex-direction:column;gap:.5rem;background:var(--gp-surf);border:1px solid var(--gp-line);border-radius:12px;padding:1.1rem}
+.pdf-icon{font-size:2rem;color:#c62828;line-height:1}
+.pdf-card h3{font-size:1.02rem;font-weight:700;margin:0}
+.pdf-card p{color:var(--gp-mut);font-size:.9rem;margin:0}
+.pdf-card .file-badge{align-self:flex-start}
+.pdf-link{margin-top:auto;font-weight:700;text-decoration:none}
+.pdf-link:hover{text-decoration:underline}
+.notice-box{display:flex;gap:.8rem;background:var(--gp-chip);border-radius:10px;padding:1rem 1.2rem}
+.notice-box i{font-size:1.3rem;color:var(--gp-acc-dark)}
+.notice-box p{margin:.2rem 0 0}
+
+/* ---------- Galeria ---------- */
+.search-wrap{position:relative;min-width:240px}
+.search-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gp-mut)}
+.search-wrap .form-control{padding-left:2.3rem}
+.filter-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.filter-btn{border:1px solid var(--gp-line);background:var(--gp-surf);color:var(--gp-ink);border-radius:999px;padding:.35rem 1rem;font-weight:600;cursor:pointer}
+.filter-btn:hover{background:var(--gp-chip)}
+.filter-btn.active{background:var(--gp-pri);border-color:var(--gp-pri);color:#fff}
+.map-card{height:100%;display:flex;flex-direction:column;background:var(--gp-surf);border:1px solid var(--gp-line);border-radius:12px;overflow:hidden}
+.map-thumb{position:relative;height:150px;display:grid;place-items:center;overflow:hidden;color:rgba(255,255,255,.9)}
+.thumb-land{background:linear-gradient(135deg,#7a8f3c,#c9b458)}
+.thumb-irrigation{background:linear-gradient(135deg,#1c7c6b,#7cc4a0)}
+.thumb-geo{background:linear-gradient(135deg,#8a5a3c,#d1a36a)}
+.thumb-rock{background:linear-gradient(135deg,#4b5563,#9aa5b1)}
+.map-chip{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.35);color:#fff;border-radius:6px;padding:.1rem .55rem;font:700 .68rem var(--gp-font);letter-spacing:.08em;z-index:2}
+.fake-contour{position:absolute;border:2px solid rgba(255,255,255,.25);border-radius:50%}
+.contour-a{width:190px;height:120px;left:-30px;bottom:-40px}
+.contour-b{width:140px;height:90px;right:-20px;top:-20px}
+.contour-c{width:100px;height:70px;right:30px;bottom:-25px}
+.map-thumb-icon{font-size:2.6rem;position:relative;z-index:1}
+.map-card-body{display:flex;flex-direction:column;gap:.4rem;padding:1rem;flex:1}
+.map-card-meta{display:flex;gap:.8rem;font-size:.8rem;color:var(--gp-mut)}
+.map-card-body h3{font-size:1.05rem;font-weight:700;margin:0}
+.map-card-body p{font-size:.9rem;color:var(--gp-mut);margin:0}
+.btn-card{margin-top:auto;align-self:flex-start;border:1px solid var(--gp-pri);color:var(--gp-pri);font-weight:600;background:transparent}
+.btn-card:hover{background:var(--gp-pri);color:#fff}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--gp-mut)}
+.empty-state i{font-size:2.4rem}
+.download-callout{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--gp-surf);border:1px solid var(--gp-line);border-radius:12px;padding:1.2rem 1.4rem}
+.download-callout h3{font-size:1.1rem;margin:0}
+.download-callout p{margin:0;color:var(--gp-mut)}
+.callout-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;background:var(--gp-chip);color:var(--gp-acc-dark)}
+
+/* ---------- Rodapés ---------- */
+.gp-footer,.geo-footer{background:var(--gp-pri);color:#fff;padding:1rem 0;font-size:.9rem}
+.gp-footer a{color:var(--gp-light)}
+.geo-footer{padding:.8rem 1.5rem;text-align:center}
+.geo-footer p{margin:0}
+
+/* ---------- Página do mapa (index) ---------- */
+.geo-hero{background:linear-gradient(135deg,var(--gp-pri) 0%,var(--gp-pri-2) 100%);color:#fff;padding:1.4rem 0}
+.geo-hero h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;margin:0}
+.geo-hero p{margin:.2rem 0 0;opacity:.9;max-width:70ch}
+.geo-map-wrap{position:relative}
+#map{width:100%;height:calc(100vh - 230px);min-height:480px;background:#e4ebe6}
+.geo-layers-panel{position:absolute;z-index:500;left:12px;bottom:34px;width:230px;background:rgba(255,255,255,.95);border:1px solid var(--gp-line);border-radius:10px;padding:.7rem .8rem;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.geo-layers-header{font-size:.95rem;font-weight:700;margin:0 0 .4rem}
+.geo-layers-panel ul{list-style:none;margin:0;padding:0;font-size:.88rem}
+.geo-layers-panel li{display:flex;align-items:center;gap:.5rem;padding:2px 0}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.25)}
+.dot-acudes{background:#0b4f8a}
+.dot-bacias{background:#d8b45a;border-radius:3px}
+.dot-drenagem{background:#2a7fc1;height:4px;border-radius:2px;border:0}
+.geo-tech-badge{position:absolute;z-index:500;right:12px;bottom:12px;margin:0;display:flex;gap:.8rem;flex-wrap:wrap;background:rgba(15,61,74,.9);color:#fff;border-radius:8px;padding:.3rem .8rem;font-size:.78rem}
+.popup-attr{font-size:.85rem;border-collapse:collapse;margin-top:4px}
+.popup-attr th{padding:2px 8px 2px 0;text-align:left;vertical-align:top;color:var(--gp-mut);font-weight:600}
+.popup-attr td{padding:2px 0;overflow-wrap:anywhere}
+
+@media (max-width:768px){
+  #map{height:62vh;min-height:380px}
+  .geo-layers-panel{position:static;width:auto;border-radius:0;box-shadow:none;border-width:1px 0}
+  .geo-tech-badge{position:static;border-radius:0;justify-content:center}
+  .resource-download{width:100%;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
